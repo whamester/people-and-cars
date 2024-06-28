@@ -99,6 +99,7 @@ const typeDefs = `
     id: String!
     firstName: String
     lastName: String
+    cars: [Car]
   }
 
   type Car {
@@ -116,6 +117,8 @@ const typeDefs = `
 
     car(id: String!): Car
     cars(personId: String): [Car]
+
+    ownerWithCars(id: String!): Owner
   }
 
   type Mutation {
@@ -142,9 +145,17 @@ const resolvers = {
 
       return carsArray.filter((car) => car.personId === args.personId);
     },
-
     car(root, args) {
       return find(carsArray, { id: args.id });
+    },
+    ownerWithCars(root, args) {
+      const owner = find(ownersArray, { id: args.id });
+      const cars = carsArray.filter((car) => car.personId === args.id);
+
+      return {
+        ...owner,
+        cars,
+      };
     },
   },
   Mutation: {

@@ -3,6 +3,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import RemoveCar from "../buttons/RemoveCar";
 import UpdateCar from "../forms/UpdateCar";
+import currency from "../../utils/format-currency";
 
 const CarCard = (props) => {
   const [editMode, setEditMode] = useState(false);
@@ -36,7 +37,7 @@ const CarCard = (props) => {
             <RemoveCar id={id} personId={personId} />,
           ]}
         >
-          {`${year} ${make} ${model} -> $${price}`}
+          {`${year} ${make} ${model} -> ${currency(price)}`}
         </Card>
       )}
     </div>

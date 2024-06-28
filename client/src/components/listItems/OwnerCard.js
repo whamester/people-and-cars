@@ -36,7 +36,7 @@ const OwnerCard = (props) => {
               {firstName} {lastName}
             </Typography.Text>
             <Cars personId={id} />
-            <Link href="#">Learn More</Link>
+            <Link href={`/person/${id}`}>Learn More</Link>
           </div>
         </Card>
       )}
